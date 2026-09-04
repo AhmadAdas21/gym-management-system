@@ -1,0 +1,338 @@
+@startuml
+class softwareProj.FeedbackManager {
+- List<Feedback> feedbackList
++ <<Create>> FeedbackManager()
++ void addFeedback(Feedback)
++ List<Feedback> getFeedbackByProgram(String)
++ double getAverageRating(String)
++ void displayFeedbackForProgram(String)
+}
+
+
+class softwareProj.Progress {
+- String programTitle
+- int attendedSessions
+- int totalSessions
+- boolean isCompleted
+- double weightLossGoal
+- double currentWeightLoss
++ <<Create>> Progress(String,int,double)
++ String getProgramTitle()
++ int getAttendedSessions()
++ int getTotalSessions()
++ boolean isCompleted()
++ double getWeightLossGoal()
++ double getCurrentWeightLoss()
++ void attendSession()
++ void completeProgram()
++ void updateWeightLoss(double)
++ String getProgressBar()
++ boolean isWeightLossGoalAchieved()
+}
+
+
+class softwareProj.Article {
+- String Auther_type
+- String text
+- String email
+- String type
+- String State
++ <<Create>> Article(String,String,String,String)
++ void setAutherType(String)
++ void setType(String)
++ void setEmail(String)
++ void setText(String)
++ void setState(String)
++ String getState()
++ String getAutherType()
++ String getType()
++ String getEmail()
++ String getText()
++ String toString()
+}
+
+
+class softwareProj.MainClass {
++ {static} void main(String[])
+}
+
+class softwareProj.SuggestionManager {
+- List<Suggestion> suggestions
++ <<Create>> SuggestionManager()
++ void addSuggestion(Suggestion)
++ List<Suggestion> getSuggestionsForInstructor(String,List<Program>)
++ void displaySuggestions()
+}
+
+
+class softwareProj.IDCardSent {
++ void generateAndSendCard(String,String)
+- String createIDCard(String,String)
+- void sendEmailWithAttachment(String,String,String,String,String)
++ {static} void main(String[])
+}
+
+class softwareProj.ProgressManager {
+- List<Progress> progressList
+- List<Program> programList
++ <<Create>> ProgressManager()
++ void addProgram(Program)
++ List<Program> getAllPrograms()
++ Program getProgramByTitle(String)
++ void addProgress(Progress)
++ List<Progress> getAllProgress()
++ Progress getProgressByProgramTitle(String)
+}
+
+
+class softwareProj.fitness_programs {
+- String title
+- String duration
+- String difficulty
+- String goals
+- String attachments
+~ List<client> enrolledClients
+- double price
++ <<Create>> fitness_programs(String,String,String,String,String,double)
++ String getTitle()
++ void setTitle(String)
++ String getDuration()
++ void setDuration(String)
++ String getDifficulty()
++ void setDifficulty(String)
++ String getGoals()
++ void setGoals(String)
++ String getAttachments()
++ void setAttachments(String)
++ double getPrice()
++ void setPrice(double)
++ String toString()
++ User searchUserByTitle(String)
++ User searchUserByIndex(int)
++ void show()
++ void enrollClient(User,String,int)
++ void listEnrolledClients()
+}
+
+
+class softwareProj.UserAccount {
++ List<User> UserList
++ List<User> PendingList
++ List<String> feedBack
+- Map<String,Integer> loginCountMap
++ List<User> PlanList
+~ PdfGenerate pdfGenerate
+~ Scanner in
+~ boolean sendStatus
++ <<Create>> UserAccount()
++ void addUser(User)
++ boolean systemIsReady()
++ boolean systemIsEmpty()
++ boolean AddDone(User)
++ List<User> getUserList()
++ List<User> getUserListPend()
++ boolean AddISDone()
++ void userLogin(String)
++ int getLoginCount(User)
++ User searchUserByEmail(String)
++ User searchUserByEmailInPending(String)
++ boolean updateUserDetails(String,String,String,String,String,String)
++ void deactive(String)
++ void active(String)
++ boolean PendingListIsEmpty()
++ void addUserToPending(User)
++ void approveAcc(User)
++ void sendStaticReq()
++ void showAllUsers()
++ void printSt()
++ void printUserStats()
++ void MostPopular()
++ void showPlansAndSubscribers()
++ void genRep()
++ boolean feedBacksIsEmpty()
++ void addFeedBack(String)
++ void showFeedBacks()
++ void showPendingUser()
++ void AccPend(String)
++ void showUserTrack()
+}
+
+
+class softwareProj.User {
+- String name
+- String email
+- String password
+- String organization
+- String state
+- String plantype
+- int age
+- String fitnessGoal
+- String dietaryPreferences
+- int Login_times
+- LocalDate currentTime
++ <<Create>> User(String,String,String,String,String,String)
++ String getEmail()
++ String getState()
++ String getName()
++ String getPassword()
++ String getOrganization()
++ String getPlanType()
++ void setName(String)
++ void setEmail(String)
++ void setPassword(String)
++ void setOrganization(String)
++ void setPlantypew(String)
++ void setState(String)
++ boolean equals(Object)
++ int getLoginTime()
++ LocalDate getLastDate()
++ void ActionTrack()
++ String toString()
+}
+
+
+class softwareProj.schedules {
+- String title
+- String state
+- String date
+- String time
+~ List<User> enrolledClients
++ <<Create>> schedules(String,String,String,String)
++ String toString()
++ String getTitle()
++ void setTitle(String)
++ String getState()
++ void setState(String)
++ String getDate()
++ void setDate(String)
++ String getTime()
++ void setTime(String)
++ List<User> getEnrolledClients()
++ void setEnrolledClients(List<User>)
++ void enrollClient(User)
+}
+
+
+class softwareProj.Feedback {
+- String programTitle
+- String clientName
+- String clientEmail
+- int rating
+- String review
++ <<Create>> Feedback(String,String,String,int,String)
++ String getProgramTitle()
++ String getClientName()
++ String getClientEmail()
++ int getRating()
++ String getReview()
++ String toString()
+}
+
+
+class softwareProj.Article_manage {
++ List<Article> Article_Tip_List
++ <<Create>> Article_manage()
++ boolean Article_tipIsEmpty()
++ void addArtTip(Article)
++ void showArtTipRequsts()
++ void showArtTipApproved()
++ void showArtTipRejected()
++ void approveArticle(String)
++ void rejectArticle(String)
+}
+
+
+class softwareProj.instructor {
+~ Email_Test emailsend
++ List<fitness_programs> programList
++ List<schedules> schedulesList
++ <<Create>> instructor()
++ boolean systemIsEmpty()
++ void addProgram(fitness_programs)
++ fitness_programs searchByIndex(int)
++ boolean update(int,String,String,String,String,String,double)
++ boolean delete(int)
++ boolean show()
++ fitness_programs searchBytitle(String)
++ void addschedules(schedules)
++ schedules searchByIndexSchedule(int)
++ boolean editdate(int,String)
++ void notifyeditDate(int)
++ boolean editTime(int,String)
++ void notifyeditTime(int)
++ void notifyeditProgram(int)
++ void notifyProgram(fitness_programs,UserAccount)
++ void offer(int)
++ void notifyOffer(int,UserAccount)
++ void notfyschedule(schedules,UserAccount)
++ void showSchedule()
+}
+
+
+class softwareProj.Suggestion {
+- String content
+- String clientEmail
+- String programTitle
++ <<Create>> Suggestion(String,String)
++ String getContent()
++ String getClientEmail()
++ String getProgramTitle()
++ String toString()
+}
+
+
+class softwareProj.client {
+~ User u
+~ String r
+~ int a
++ <<Create>> client(User,String,int)
++ User getU()
++ void setU(User)
++ String getR()
++ void setR(String)
++ int getA()
++ void setA(int)
++ void print()
++ void receiveProgressReport(User)
+}
+
+
+class softwareProj.PdfGenerate {
+- String path
+- List<String> content
++ <<Create>> PdfGenerate(String)
++ void addText(String)
++ void generatePdf()
++ {static} void main(String[])
+}
+
+
+class softwareProj.IDCardGenerate {
++ {static} void generateIDCard(String,String,String)
+}
+
+class softwareProj.Email_Test {
++ void sendEmail(String,String,String)
++ {static} void main(String[])
+}
+
+class softwareProj.Program {
+- String title
+- String duration
+- String difficultyLevel
+- String focusArea
+- int maxCapacity
+- List<User> enrolledClients
++ <<Create>> Program(String,String,String,String,int)
++ String getTitle()
++ String getDuration()
++ String getDifficultyLevel()
++ String getFocusArea()
++ int getMaxCapacity()
++ int getCurrentEnrollment()
++ boolean enrollClient(User)
++ List<User> getEnrolledClients()
+}
+
+
+@enduml
